@@ -1,0 +1,23 @@
+.header{
+    min-height:60vh;
+
+}
+
+.header .img_cont{
+    height:45vh;
+}
+
+@media (min-width: 1024px) {
+    .header{
+        height: 95vh;
+    }
+
+    .header .img_cont{
+        height:100%;
+    }
+
+    .text_comp{
+       
+        left:5%;
+    }
+  }
