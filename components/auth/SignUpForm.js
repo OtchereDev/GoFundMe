@@ -1,6 +1,4 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import AuthBaseInput from './AuthBaseInput'
 import Link from 'next/link'
 import {useState}  from 'react'
