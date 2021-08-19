@@ -10,7 +10,10 @@ const AuthNavBar = () => {
     return (
 
         <div className="flex justify-between w-full bg-white shadow-md items-center py-4 px-4  lg:px-32 absolute top-0 left-0">
-            <LogoSvg width={"w-4/12 md:w-2/12"}/>
+           
+                
+            <LogoSvg  width={"w-4/12 md:w-2/12"}/>
+            
             <div className="flex justify-center text-sm ">
                 <p className={`${router.pathname=="/sign-in"?"block":"hidden"}`}>
                     <span className="hidden md:inline-block">

@@ -7,6 +7,16 @@
     height:45vh;
 }
 
+.card {
+    width: 45%;
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 30%;
+    }
+}
+
 @media (min-width: 1024px) {
     .header{
         height: 95vh;
@@ -19,5 +29,9 @@
     .text_comp{
        
         left:5%;
+    }
+
+    .card {
+        width: 23%;
     }
   }
