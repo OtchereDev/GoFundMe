@@ -3,16 +3,16 @@ import HeaderImage from "./assets/gofundme_homepage-mobile.png"
 import Image from 'next/image'
 
 
-const CardComp = () => {
+const CardComp = ({ showLoc=true}) => {
     return (
-        <div className="w-6/12 md:w-4/12 lg:w-3/12 shadow-lg">
+        <div className="card m-2 shadow-md lg:shadow-lg rounded-b-md overflow-hidden">
                 <div className="w-full relative h-28 md:h-40 rounded-t-md overflow-hidden ">
                     <Image src={HeaderImage} layout={"fill"} />
                 </div>
-                <div className="p-2 bg-white">
-                    <h3 className="text-primary_green font-bold ">
-                        CASTLE HILL NSW
-                    </h3>
+                <div className="p-2 bg-white ">
+                    {showLoc && <h3 className="text-primary_green font-bold ">
+                            CASTLE HILL NSW
+                        </h3>}
                     <h2 className="md:text-lg font-bold">
                         Lebanon Relief Now
                     </h2>
@@ -29,7 +29,7 @@ const CardComp = () => {
                             </div>
                         </div>
                     </div>
-                    <h2 className="lg:text-lg md:font-bold ">
+                    <h2 className="text-sm md:text-base lg:text-lg md:font-bold ">
                         $152,040 raised <span className="hidden font-normal md:inline-block">of $300,000</span> 
 
                     </h2>
