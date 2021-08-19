@@ -2,6 +2,7 @@ import React from 'react'
 import LogoSvg from "../LogoSvg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch,faBars } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 const NavBar = ({setShowSearch,setToggler}) => {
     return (
@@ -15,8 +16,9 @@ const NavBar = ({setShowSearch,setToggler}) => {
                 </div>
             </div>
             <div className="w-6/12 flex justify-center items-enter">
-
-                <LogoSvg width={" w-8/12 lg:w-3/12"} />
+                               
+                <LogoSvg  width={" w-8/12 lg:w-3/12"} />
+                
             </div>
             <div className="w-3/12 flex justify-center items-center">
 
@@ -29,9 +31,12 @@ const NavBar = ({setShowSearch,setToggler}) => {
                 <div className="hidden lg:flex items-center justify-center">
                     
                         <div>
-                            <span className="mr-2 text-sm hover:text-gray-500 cursor-pointer">
-                                Sign in
-                            </span>
+                            <Link href={"/sign-in"}>
+                            
+                                <span className="mr-2 text-sm hover:text-gray-500 cursor-pointer">
+                                    Sign in
+                                </span>
+                            </Link>
                         </div>
                         <div>
                             <button className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
