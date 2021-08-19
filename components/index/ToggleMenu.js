@@ -16,7 +16,7 @@ const ToggleMenu = ({toggler, setToggler}) => {
     const menu=useRef(null)
 
     return (
-        <div ref={menu} className="w-full absolute z-20 top-0 left-0 h-full lg:hidden px-10 pt-10  bg-white">
+        <div ref={menu} className="w-full fixed z-20 top-0 left-0 h-full lg:hidden px-10 pt-10  bg-white">
             
             <div className="text-right text-xl mb-3">
                     <FontAwesomeIcon onClick={()=>setToggler(false)} icon={faTimes}  className="cursor-pointer" />
