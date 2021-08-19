@@ -27,7 +27,7 @@ const SearchComp = ({setShowSearch,showSearch}) => {
         }
     }
     return (
-        <div ref={wrapperRef} onClick={wrapperClose} className="w-full absolute z-20 top-0 left-0 h-full bg-opacity-20 wrapper bg-black">
+        <div ref={wrapperRef} onClick={wrapperClose} className="w-full fixed z-20 top-0 left-0 bottom-0 right-0 h-full bg-opacity-20 wrapper bg-black">
             <SearchBar handleClose={setShowSearch} />
         </div>
     )
