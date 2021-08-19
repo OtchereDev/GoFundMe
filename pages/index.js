@@ -5,6 +5,10 @@ import NavBar from '../components/index/NavBar'
 import SearchComp from '../components/index/SearchComp'
 import ToggleMenu from '../components/index/ToggleMenu'
 import TopFundraisers from '../components/index/TopFundraisers'
+import Benefit from '../components/index/Benefit'
+import NearFundraisers from '../components/index/NearFundraisers'
+import CTA from '../components/index/CTA'
+import Footer from '../components/index/Footer'
 
 export default function Home() {
 
@@ -27,6 +31,10 @@ export default function Home() {
         <div className="w-full z-0 pt-14 lg:pt-20">
           <Header/>
           <TopFundraisers/>
+          <Benefit/>
+          <NearFundraisers/>
+          <CTA/>
+          <Footer/>
 
         </div>
       </div>

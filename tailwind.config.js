@@ -7,7 +7,8 @@ module.exports = {
       colors:{
         primary_green:"#02a95c",
         primary_black:"#333",
-        secondary_black:"#666"
+        secondary_black:"#666",
+        section_bg:"#fbf8f6"
       },
       fontFamily:{
         primary:"'Lato','san-serif'"
