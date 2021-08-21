@@ -1,10 +1,23 @@
-.header{
+.header,
+.detail_header{
     min-height:60vh;
 
 }
 
-.header .img_cont{
+.header .img_cont,
+.detail_header .img_cont{
     height:45vh;
+}
+
+.btn_deep{
+
+    background:linear-gradient(180deg,#fdb933 35.42%,#f58131 139.58%);
+}
+
+.btn_light{
+
+       background:linear-gradient(180deg,#ffde9e 50%,#fcb957);
+
 }
 
 .card {
@@ -26,6 +39,10 @@
         height:100%;
     }
 
+    .detail_header .img_cont{
+        height: 75vh;
+    }
+
     .text_comp{
        
         left:5%;
@@ -35,3 +52,14 @@
         width: 23%;
     }
   }
+
+
+@media (min-height: 900px){
+    .header{
+        height: 45vh;
+    }
+
+    .detail_header .img_cont{
+        height: 55vh;
+    }
+}
