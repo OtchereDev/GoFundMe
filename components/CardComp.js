@@ -23,7 +23,7 @@ const CardComp = ({ showLoc=true}) => {
                         Last donation 17m ago
                     </h4>
                     <div className="w-full my-2">
-                        <div className="w-full h-1 relative rounded-3xl bg-gray-200">
+                        <div className="w-full h-1 relative rounded-3xl bg-gray-200 overflow-hidden">
                             <div className="w-3/12 h-full absolute rounded-3xl top-0 left-0 bg-primary_green">
 
                             </div>
