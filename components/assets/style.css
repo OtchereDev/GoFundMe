@@ -1,7 +1,12 @@
 .header,
-.detail_header{
+.detail_header,
+.donate_header{
     min-height:60vh;
 
+}
+
+.donate_header .img_cont{
+    min-height: 10vh;
 }
 
 .header .img_cont,
@@ -27,6 +32,10 @@
 @media (min-width: 768px) {
     .card {
         width: 30%;
+    }
+
+    .donate_header .img_cont{
+        min-height: 4rem;
     }
 }
 
