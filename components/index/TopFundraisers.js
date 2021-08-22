@@ -9,7 +9,7 @@ const TopFundraisers = () => {
     return (
         <div className="px-4  pt-14 lg:pt-20 lg:px-16 w-full">
 
-            <h2 className="text-3xl lg:text-4xl font-bold mb-5">
+            <h2 className="text-3xl md:mt-8 lg:mt-0 lg:text-4xl font-bold mb-5">
                 Top Fundraiser
             </h2>
             

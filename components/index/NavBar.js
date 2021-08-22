@@ -15,7 +15,7 @@ const NavBar = ({setShowSearch,setToggler}) => {
                     </span>
                 </div>
             </div>
-            <div className="w-6/12 flex justify-center items-enter">
+            <div className="w-6/12 flex justify-center items-center">
                                
                 <LogoSvg  width={" w-8/12 lg:w-3/12"} />
                 
