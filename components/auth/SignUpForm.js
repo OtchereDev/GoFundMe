@@ -2,6 +2,8 @@ import React from 'react'
 import AuthBaseInput from './AuthBaseInput'
 import Link from 'next/link'
 import {useState}  from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 const SignUpForm = () => {
 
@@ -9,10 +11,13 @@ const SignUpForm = () => {
     const [password,setPassword]=useState('')
     const [fullName,setFullname]=useState('')
 
+    const {signup} = useContext(AuthContext)
+
     const handleSubmit=e=>{
         e.preventDefault()
 
         console.log(email,password,fullName)
+        signup({email,password,fullName})
     }
     return (
     
