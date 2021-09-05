@@ -2,6 +2,7 @@ import React from 'react'
 import AuthNavBar from '../components/auth/auth-navbar'
 import SignUpForm from '../components/auth/SignUpForm'
 import Head from "next/head"
+import cookie from "cookie"
 
 
 
@@ -24,6 +25,14 @@ const SignUp = () => {
             </div>
         </>
     )
+}
+
+export const getServerSideProps=({req,res})=>{
+    const {refresh_token} = cookie.parse(req.headers.cookie)
+
+    if (refresh_token) return {redirect:{path:"/"}}
+
+    return {props:{}}
 }
 
 export default SignUp

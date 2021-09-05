@@ -26,4 +26,12 @@ const SignIn = () => {
     )
 }
 
+export const getServerSideProps=({req,res})=>{
+    const {refresh_token} = cookie.parse(req.headers.cookie)
+
+    if (refresh_token) return {redirect:{path:"/"}}
+
+    return {props:{}}
+}
+
 export default SignIn
