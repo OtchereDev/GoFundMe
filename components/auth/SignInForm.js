@@ -5,20 +5,50 @@ import AuthBaseInput from './AuthBaseInput'
 import Link from 'next/link'
 import {useState}  from 'react'
 import { GoogleLogin } from 'react-google-login';
+import { useContext } from 'react'
+import {AuthContext} from '../../context/AuthContext'
+import {toast}  from "react-toastify"
+import {useRouter} from "next/router"
+
 
 const SIgnInForm = () => {
 
     const [email,setEmail] = useState('')
     const [password,setPassword]=useState('')
 
-    const handleSubmit=e=>{
+    const {login,checkUserLoggedIn,setUser} = useContext(AuthContext)
+
+    const router = useRouter()
+
+    const handleSubmit=async(e)=>{
         e.preventDefault()
 
-        console.log(email,password)
+        if (email.length && password.length) return await login({email,password})
+
+        toast.error("Please fill in the input")
+
     }
 
-    const responseGoogle = (response) => {
-        console.log(response);
+    const responseGoogle = async(response) => {
+
+        const url = "/api/google-login"
+
+        const res = await fetch(url,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify({
+                token: response.tokenId
+              }),
+        })
+
+        if (!res.ok) return toast.error("Something went wrong... please try again")
+
+        const currentUser = await checkUserLoggedIn()
+        if (currentUser) setUser(currentUser)
+
+        router.push("/")
       }
 
 
@@ -35,7 +65,7 @@ const SIgnInForm = () => {
                     <a href="/" className="focus:outline-none">
                     <GoogleLogin
                         clientId="990750877166-rompnb60e7kqho9a4a2p2khc2dj26ebc.apps.googleusercontent.com"
-                        responseType="code"
+                        // responseType="code"                 
                         render={renderProps => (
                         
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="py-3 px-4 lg:px-7 shadow-lg w-full outline-none mx-auto rounded-md flex justify-center items-center text-gray-50 bg-red-400">
@@ -52,7 +82,7 @@ const SIgnInForm = () => {
                         buttonText="Login"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
+                        // cookiePolicy={''}
                     />
                     </a>
                 </div>
@@ -79,7 +109,7 @@ const SIgnInForm = () => {
             <hr/>
 
             <div className="text-center py-10">
-                <Link href="#">
+                <Link href="/">
                 
                     <a className="text-primary_green font-medium  ">
                         Forgot your password
