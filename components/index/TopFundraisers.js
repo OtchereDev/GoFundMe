@@ -5,7 +5,7 @@ import CardComp from '../CardComp'
 import { faChevronRight} from "@fortawesome/free-solid-svg-icons"
 
 
-const TopFundraisers = () => {
+const TopFundraisers = ({fundraisers}) => {
     return (
         <div className="px-4  pt-14 lg:pt-20 lg:px-16 w-full">
 
@@ -15,11 +15,9 @@ const TopFundraisers = () => {
             
             <div className="flex flex-wrap">
 
-                <CardComp/>
-                <CardComp/>
-                <CardComp/>
-                <CardComp/>
-                <CardComp/>
+                {
+                    fundraisers.map((fundraiser,index)=> <CardComp key={index} fundraiser={fundraiser} />)
+                }
 
 
             </div>

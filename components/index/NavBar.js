@@ -3,8 +3,15 @@ import LogoSvg from "../LogoSvg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch,faBars } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 const NavBar = ({setShowSearch,setToggler}) => {
+
+    const {user,logout} = useContext(AuthContext)
+
+    
+
     return (
         <nav className="flex items-center justify-center w-full py-5 px-4 lg:px-6 absolute top-0 left-0 bg-white shadow-sm z-10">
             <div className="w-3/12">
@@ -30,19 +37,39 @@ const NavBar = ({setShowSearch,setToggler}) => {
                 </div>
                 <div className="hidden lg:flex items-center justify-center">
                     
-                        <div>
+                        
+                    {
+                        user ?
+                        <>  
+                            <div>
+                                
+                                <span className="mr-4 text-sm hover:text-gray-500 ">
+                                    Welcome {user.full_name}
+                                </span> 
+                            </div>
+
+                            <div>
+                                <button onClick={logout} className="px-2 outline-none py-1 font-semibold rounded-md bg-red-600 text-gray-50 shadow-md">
+                                    Logout
+                                </button>
+                            </div>
+                        </> 
+                        :
+                        <>
                             <Link href={"/sign-in"}>
-                            
+                        
                                 <span className="mr-2 text-sm hover:text-gray-500 cursor-pointer">
                                     Sign in
                                 </span>
                             </Link>
-                        </div>
-                        <div>
-                            <button className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
-                                Start a GoFundMe
-                            </button>
-                        </div>
+                            <div>
+                                <button className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
+                                    Start a GoFundMe
+                                </button>
+                            </div>
+                        </>
+                    }
+                       
                    
                 </div>
 

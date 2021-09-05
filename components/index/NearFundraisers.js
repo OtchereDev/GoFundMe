@@ -5,7 +5,7 @@ import CardComp from '../CardComp'
 import { faChevronRight} from "@fortawesome/free-solid-svg-icons"
 
 
-const NearFundraisers = () => {
+const NearFundraisers = ({fundraisers}) => {
     return (
         <div className="px-4  pt-14 lg:pt-20 lg:px-16 w-full">
 
@@ -15,11 +15,11 @@ const NearFundraisers = () => {
             
             <div className="flex flex-wrap">
 
-                <CardComp showLoc={false} />
-                <CardComp showLoc={false} />
-                <CardComp showLoc={false} />
-                <CardComp showLoc={false} />
-                <CardComp showLoc={false} />
+                {
+                    fundraisers.map((fundraiser,index)=> <CardComp key={index} showLoc={false} fundraiser={fundraiser} />)
+                }
+
+                
 
 
             </div>
