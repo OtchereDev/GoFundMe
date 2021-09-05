@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 
-const Header = () => {
+const Header = ({amountRaised,goal_amount,image_url,donations}) => {
 
     const router =useRouter()
     const {uuid} = router.query
@@ -20,18 +20,18 @@ const Header = () => {
                     <Image src={TestImage} layout={"fill"} />
                 </div>
             </div>
-            <div className="w-full lg:w-4/12 lg:flex lg:justify-center py-5 lg:py-10">
+            <div className="w-full lg:w-4/12  lg:mx-auto py-5 lg:py-10">
                 {/* Donate Card Part */}
                 <div className="lg:w-11/12 px-5 lg:shadow-lg lg:rounded-md py-5 ">
 
                     <h2 className="text-2xl lg:text-3xl font-bold ">
-                        $152,040 raised <span className=" text-sm font-normal ">of $300,000</span> 
+                        ${amountRaised} raised <span className=" text-sm font-normal ">of ${goal_amount}</span> 
 
                     </h2>
 
                     <div className="w-full my-2">
                         <div className="w-full h-1 relative rounded-3xl bg-gray-200 overflow-hidden">
-                            <div className="w-3/12 h-full absolute rounded-3xl top-0 left-0 bg-primary_green">
+                            <div style={{width : `${(amountRaised/goal_amount)*100}%`}} className="w-3/12 h-full absolute rounded-3xl top-0 left-0 bg-primary_green">
 
                             </div>
                         </div>
@@ -54,14 +54,13 @@ const Header = () => {
                             <FontAwesomeIcon className=" text-xl" icon={ faChartLine} />
                         </div>
                         <span className="text-lg font-semibold">
-                            1,258 people just donated
+                            {donations.length==0?"No donations yet":donations.length+" people just donated"} 
                         </span>
                     </div>
-                    <div>
-                        <DonateItem border_class={"border-t"} />
-                        <DonateItem border_class={"border-t"} />
-                        <DonateItem border_class={"border-t"} />
-                        <DonateItem border_class={"border-t"} />
+                    {donations.length ? <div>
+
+                        {donations?.slice(0,4).map((donation,index)=><DonateItem key={index} donate={donation} border_class={"border-t"} />)}
+                    
 
                         <div>
                             <button className="text-green-700 bg-white border-green-600 border rounded-md py-2 px-4 hover:bg-green-600 hover:text-white font-semibold">
@@ -69,7 +68,7 @@ const Header = () => {
                             </button>
                            
                         </div>
-                    </div>
+                    </div>:""}
                 </div>
 
 

@@ -4,12 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import Comment from './Comment'
 
-const Description = () => {
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
+const Description = ({title,createdAt,organiser,category,description,donations}) => {
+
+    const comments=donations.filter(donation=>donation.comment)
+
     return (
         <div className="w-full md:w-8/12 md:mx-auto  px-4 lg:px-10 border-b">
-            <h1 className="text-3xl lg:text-5xl my-2 text-center font-semibold">
+            <h1 className="text-3xl lg:text-5xl capitalize my-2 text-center font-semibold">
 
-                Tragic accident of a young girl
+                {title}
             </h1>
 
             <div>   
@@ -20,7 +25,7 @@ const Description = () => {
                 <div >
 
                     <h3 className="">
-                        Chelsea Clarke is organizing this fundraiser.
+                        {organiser} is organizing this fundraiser.
                     </h3>
                     
                 </div>
@@ -28,18 +33,17 @@ const Description = () => {
 
             <div className="flex flex-col md:flex-row md:items-center py-3">
                 <span className="md:mr-2">
-                    Created 3 days ago
+                    Created {formatDistanceToNow( Date.parse(createdAt) , { addSuffix: true })}
                 </span>
                 <span className="flex items-center">
                     |  <FontAwesomeIcon className="text-lg m-2 text-green-400" icon={faTag} />
                     <span className="cursor-pointer hover:bg-gray-100 p-1 ">
-                        Accidents & Emergencies
+                        {category.join(", ")}
                     </span>
                 </span>
             </div>
             <p className="text-gray-800 tracking-wide ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam tempora maxime inventore ratione nostrum consequatur ullam. Quisquam laboriosam ullam, qui architecto rerum iste aperiam. Omnis optio odit animi laudantium consequuntur!
-                Rerum odio optio vero omnis facere ad quibusdam est, architecto pariatur voluptatum ex itaque doloremque provident saepe iure? Quibusdam sed temporibus illo itaque non soluta molestiae doloremque fuga officiis possimus.
+               {description}
             </p>
             </div>
 
@@ -55,7 +59,7 @@ const Description = () => {
                     <div className="lg:flex w-full">
                         <div className="lg:w-10/12">
                             <h3 className="">
-                                Chelsea Clarke 
+                                {organiser} 
                             </h3>
                             <h5 className="text-sm my-1">
                                 Organiser
@@ -75,19 +79,21 @@ const Description = () => {
 
             <div className="mt-6">
                 <h3 className=" pb-2 text-2xl font-bold">
-                    Comments (164)
+                    Comments ({comments.length})
                 </h3>
 
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
+                {comments.length? 
+                comments.slice(0,10).map((comment,index)=> <Comment key={index} comment={comment} /> )
+                : <h3 className="text-center my-5">
+                    No comments 
+                </h3>}
+               
 
-                <div className="my-3">
+                {comments.length>10 ? <div className="my-3">
                     <button className="w-full lg:w-4/12 py-2 text-green-700 font-semibold border border-green-500 bg-white hover:bg-green-50 rounded-md outline-none ">
                         Show More
                     </button>
-                </div>
+                </div> : ""}
 
             </div>
             

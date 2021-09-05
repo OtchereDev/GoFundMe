@@ -2,7 +2,9 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
-const DonateItem = ({border_class}) => {
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
+const DonateItem = ({border_class,donate}) => {
     return (
         <div className={`flex my-2 ${border_class} text-green-700 items-center`}>
             <div className="flex justify-center items-center h-10 w-10 rounded-full mr-4 bg-green-100">
@@ -11,16 +13,16 @@ const DonateItem = ({border_class}) => {
             <div >
 
                 <h3 className="text-lg">
-                    Eric Smith
+                    {donate.name}
                 </h3>
                 <div className="flex items-center">
 
                     <span className="text-lg mr-2">
-                        $20
+                        ${donate.amount}
                     </span>
                     
                     <span className="text-sm">
-                        2 hours
+                        {formatDistanceToNow( Date.parse(donate.createdAt) , { addSuffix: false })}
                     </span>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 import React from 'react'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Comment = () => {
+const Comment = ({comment}) => {
     return (
         <div className={` my-2 border-t py-2 text-green-700 items-center`}>
             <div className="flex items-center">
@@ -11,16 +12,16 @@ const Comment = () => {
                     
                 </div>
                 <h3 className="text-lg ">
-                    Kelly Hayne donated £10
+                    {comment.name} donated £{comment.amount}
                 </h3>
             </div>
             <div >
 
                 <p className="text-gray-800">
-                    On behalf of summers scents
+                    {comment.comment}
                 </p>
                 <p className="text-sm">
-                    7 mins
+                   {formatDistanceToNow( Date.parse(comment.createdAt) , { addSuffix: true })}
                 </p>
             </div>
         </div>
