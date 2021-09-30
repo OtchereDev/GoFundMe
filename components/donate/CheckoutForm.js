@@ -80,6 +80,10 @@ const CheckoutForm = ({ donationData }) => {
   };
 
   const handleAddComment = async () => {
+    if (!message.length)
+      return toast.error(
+        "Please provide a message or click on the cancel button"
+      );
     try {
       const res = await fetch(`${APIURL}/payments/${intentId}/add-comment`, {
         method: "POST",
@@ -96,14 +100,15 @@ const CheckoutForm = ({ donationData }) => {
           router.push("/");
         }, 1000);
       } else {
-        console.log("rr", res);
         const data = await res.json();
-        console.log("dd", data);
       }
     } catch (error) {
-      console.log("ee", error);
       toast.error("Sorry could not add message");
     }
+  };
+
+  const handleMsgCancel = () => {
+    router.push("/");
   };
 
   return (
@@ -160,6 +165,14 @@ const CheckoutForm = ({ donationData }) => {
           onClick={handleAddComment}
         >
           Submit
+        </button>
+
+        <button
+          className="bg-red-400 mt-2 shadow-md outline-none text-gray-50 w-full py-2 rounded-md font-medium text-lg"
+          disabled={!succeded}
+          onClick={handleMsgCancel}
+        >
+          Cancle, I don't want to leave a message
         </button>
       </div>
     </>
