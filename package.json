@@ -13,11 +13,16 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.17.1",
+    "antd": "^4.16.13",
+    "axios": "^0.21.3",
+    "cookie": "^0.4.1",
+    "date-fns": "^2.23.0",
     "next": "latest",
     "nextjs-progressbar": "^0.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-google-login": "^5.2.2"
+    "react-google-login": "^5.2.2",
+    "react-toastify": "^8.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
