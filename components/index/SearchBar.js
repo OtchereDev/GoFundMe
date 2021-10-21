@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { faTimes,faSearch} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import router from 'next/router'
 
 const SearchBar = ({handleClose}) => {
+    const [term,setTerm] = useState('')
+    
+    const handleSearch =(e)=>{
+
+        if (e.key === "Enter") {
+            e.preventDefault();
+            router.push(`/search/${term}`)
+          
+        }
+    }
     return (
         <div className="w-full py-3 px-7 lg:py-5 lg:px-10 bg-white">
             <div>
@@ -19,7 +30,14 @@ const SearchBar = ({handleClose}) => {
                         </span>
                     </div>
                     <div className="w-full">
-                        <input className="py-2 px-4 w-full" type="text" placeholder="Find a dundraiser by name or location" />
+                        <input 
+                            className="py-2 px-4 w-full outline-none" 
+                            type="text" 
+                            placeholder="Find a dundraiser by name or location"
+                            value={term}
+                            onChange={e=>setTerm(e.target.value)} 
+                            onKeyDown={handleSearch}/>
+
 
                     </div>
                 </div>
