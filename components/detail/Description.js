@@ -3,12 +3,24 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import Comment from './Comment'
+import ContactCard from './ContactCard'
+import CommentCard from './CommentCard'
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Description = ({title,createdAt,organiser,category,description,donations}) => {
+const Description = ({title,createdAt,organiser,category,description,donations,NumberOfDonations,setModalChildren,setIsModalOpen}) => {
 
     const comments=donations.filter(donation=>donation.comment)
+
+    const onContactClick=()=>{
+        setModalChildren(<ContactCard contact={organiser}/>)
+        setIsModalOpen(true)
+    }
+
+    const onCommentClick=()=>{
+        setModalChildren(<CommentCard />)
+        setIsModalOpen(true)
+    }
 
     return (
         <div className="w-full md:w-8/12 md:mx-auto  px-4 lg:px-10 border-b">
@@ -25,7 +37,7 @@ const Description = ({title,createdAt,organiser,category,description,donations})
                 <div >
 
                     <h3 className="">
-                        {organiser} is organizing this fundraiser.
+                        {organiser.fullName} is organizing this fundraiser.
                     </h3>
                     
                 </div>
@@ -59,7 +71,7 @@ const Description = ({title,createdAt,organiser,category,description,donations})
                     <div className="lg:flex w-full">
                         <div className="lg:w-10/12">
                             <h3 className="">
-                                {organiser} 
+                                {organiser.fullName} 
                             </h3>
                             <h5 className="text-sm my-1">
                                 Organiser
@@ -68,7 +80,7 @@ const Description = ({title,createdAt,organiser,category,description,donations})
                         </div>
                         <div className="w-2/12">
 
-                            <button className="text-green-700 font-semibold border border-green-500 bg-white hover:bg-green-50 rounded-md py-1 px-3 outline-none">
+                            <button onClick={onContactClick} className="text-green-700 font-semibold border border-green-500 bg-white hover:bg-green-50 rounded-md py-1 px-3 outline-none">
                                 Contact
                             </button>
                         </div>
@@ -83,14 +95,14 @@ const Description = ({title,createdAt,organiser,category,description,donations})
                 </h3>
 
                 {comments.length? 
-                comments.slice(0,10).map((comment,index)=> <Comment key={index} comment={comment} /> )
+                comments.map((comment,index)=> <Comment key={index} comment={comment} /> )
                 : <h3 className="text-center my-5">
                     No comments 
                 </h3>}
                
 
-                {comments.length>10 ? <div className="my-3">
-                    <button className="w-full lg:w-4/12 py-2 text-green-700 font-semibold border border-green-500 bg-white hover:bg-green-50 rounded-md outline-none ">
+                {NumberOfDonations > 5 ? <div className="my-3">
+                    <button onClick={onCommentClick} className="w-full lg:w-4/12 py-2 text-green-700 font-semibold border border-green-500 bg-white hover:bg-green-50 rounded-md outline-none ">
                         Show More
                     </button>
                 </div> : ""}
