@@ -6,12 +6,18 @@ import { faChartLine} from "@fortawesome/free-solid-svg-icons"
 import DonateItem from './DonateItem'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import DonationCard from './DonationCard'
 
 
-const Header = ({amountRaised,goal_amount,image_url,donations}) => {
+const Header = ({amountRaised,goal_amount,image_url,donations,setIsModalOpen,setModalChildren}) => {
 
     const router =useRouter()
     const {uuid} = router.query
+
+    const onDonationClick=()=>{
+        setModalChildren(<DonationCard/>)
+        setIsModalOpen(true)
+    }
     return (
         <div className="w-full flex flex-col lg:flex-row detail_header">
             <div className="w-full lg:w-8/12 lg:py-10 lg:flex justify-center items-center ">
@@ -63,7 +69,7 @@ const Header = ({amountRaised,goal_amount,image_url,donations}) => {
                     
 
                         <div>
-                            <button className="text-green-700 bg-white border-green-600 border rounded-md py-2 px-4 hover:bg-green-600 hover:text-white font-semibold">
+                            <button onClick={onDonationClick} className="text-green-700 bg-white border-green-600 border rounded-md py-2 px-4 hover:bg-green-600 hover:text-white font-semibold">
                                 See all
                             </button>
                            
