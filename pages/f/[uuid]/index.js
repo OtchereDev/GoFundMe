@@ -7,10 +7,13 @@ import Header from "../../../components/detail/Header";
 import Description from "../../../components/detail/Description";
 import Footer from "../../../components/index/Footer";
 import { APIURL } from "../../../config/config";
+import Modal from "../../../components/Modal"
 
 const Detail = ({ data }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [toggler, setToggler] = useState(false);
+  const [isModalOpen, setIsModalOpen] =useState(false)
+  const [modalChildren,setModalChildren] = useState(null)
 
   const {
     amountRaised,
@@ -22,25 +25,28 @@ const Detail = ({ data }) => {
     organiser,
     category,
     description,
+    no_of_donors,
   } = data;
 
   return (
     <>
       <Head>
         <title>
-          Fundraiser by {data.organiser} : {data.title}
+          Fundraiser by {data.organiser.fullName} : {data.title}
         </title>
       </Head>
       <div className="w-full z-0 pt-14 lg:pt-20 min-h-screen">
         <SearchComp showSearch={showSearch} setShowSearch={setShowSearch} />
         <ToggleMenu toggler={toggler} setToggler={setToggler} />
         <NavBar setShowSearch={setShowSearch} setToggler={setToggler} />
-
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} setModalChildren={setModalChildren}> {modalChildren} </Modal>
         <Header
           amountRaised={amountRaised}
           goal_amount={goal_amount}
           image_url={image_url}
           donations={donations}
+          setIsModalOpen={setIsModalOpen}
+          setModalChildren={setModalChildren}
         />
 
         <Description
@@ -50,6 +56,9 @@ const Detail = ({ data }) => {
           category={category}
           description={description}
           donations={donations}
+          NumberOfDonations={no_of_donors}
+          setIsModalOpen={setIsModalOpen}
+          setModalChildren={setModalChildren}
         />
 
         <Footer />
