@@ -10,8 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../context/AuthContext";
+import { APIURL } from "../../../config/config";
 
-const Donate = () => {
+const Donate = ({data}) => {
   const [donationData, setDonationData] = useState();
   const [donation, setDonation] = useState("");
   const [tip, setTip] = useState("0");
@@ -30,9 +31,10 @@ const Donate = () => {
   const handleShowPayment = () => {
     if (donation.length && (tip.length || tip == "0") && donorName.length) {
       setDonationData({
-        amount: (parseInt(donation) + parseInt(tip)) * 100,
+        amount: (parseInt(donation) + parseFloat(tip)) * 100,
         name: donorName,
         fundraiser_id: uuid,
+        tip:parseFloat(tip),
       });
       setShowPayment(true);
     } else if (!donorName.length) {
@@ -43,15 +45,16 @@ const Donate = () => {
   };
 
   useEffect(() => {
-    if (donation.length && (!tip.length || tip == "0")) {
+    if (donation.length || (!tip.length || tip == "0")) {
       setTip(parseFloat(parseInt(donation) * 0.15).toFixed(2));
     }
+    console.log("here")
   }, [donation]);
 
   return (
     <>
       <Head>
-        <title>Donate to Tragic accident of a young girl</title>
+        <title>Donate to {data.title}</title>
       </Head>
 
       <div className="w-full min-h-screen bg-gray-100">
@@ -70,7 +73,7 @@ const Donate = () => {
                 </button>
               </Link>
             </div>
-            <Header />
+            <Header title={data.title} beneficiary={data.beneficiary} organizer={data.organiser} />
 
             <div className="px-3 py-4 md:py-8 border-b">
               <h5 className="text-lg font-semibold text-gray-800">
@@ -88,14 +91,14 @@ const Donate = () => {
                     onFocus={(e) => setShowPayment(false)}
                     className="block w-full text-4xl md:text-5xl font-semibold text-right outline-none appearance-none"
                   />
-                  <h3 className="text-5xl font-semibold text-gray-800 mb-0">
+                  <h3 className="text-4xl md:text-5xl font-semibold text-gray-800 mb-0">
                     .00
                   </h3>
                 </div>
               </div>
             </div>
 
-            <div className="border-b pb-4">
+            <div className="border-b pb-4 px-3">
               <h6 className="text-gray-800 font-semibold my-3">Donor Name</h6>
               <input
                 type="text"
@@ -170,18 +173,18 @@ const Donate = () => {
               <div className="text-gray-500 text-lg">
                 <div className="flex justify-between items-center">
                   <h5>Your Donation</h5>
-                  <h5>${donation.length ? donation : 0}</h5>
+                  <h5>{donation.length ? donation : 0}.00</h5>
                 </div>
                 <div className="flex border-b justify-between items-center pb-2">
                   <h5>GoFundMe Tip</h5>
-                  <h5>${tip}</h5>
+                  <h5>{tip}</h5>
                 </div>
 
                 <div className="flex justify-between items-center pt-2">
                   <h5>Total Due today</h5>
                   <h5>
                     $
-                    {donation.length ? parseInt(donation) + parseFloat(tip) : 0}
+                    {donation.length ? parseInt(donation) + parseFloat(tip) : 0}.00
                   </h5>
                 </div>
               </div>
@@ -192,5 +195,19 @@ const Donate = () => {
     </>
   );
 };
+
+export const getServerSideProps = async (req, res) => {
+  const uuid = req.params.uuid;
+  const request = await fetch(`${APIURL}/fundraiser/detail/${uuid}`);
+
+  if (!request.ok) return { redirect: { permanent: false, destination: "/" } };
+
+  const data = await request.json();
+
+  return {
+    props: { data },
+  };
+};
+
 
 export default Donate;
