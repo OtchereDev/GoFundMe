@@ -9,6 +9,8 @@ import { useContext } from 'react'
 import {AuthContext} from '../../context/AuthContext'
 import {toast}  from "react-toastify"
 import {useRouter} from "next/router"
+import { useDispatch } from 'react-redux'
+import { registerUser } from '../../store/slices/userSlice'
 
 
 const SIgnInForm = () => {
@@ -17,6 +19,8 @@ const SIgnInForm = () => {
     const [password,setPassword]=useState('')
 
     const {login,checkUserLoggedIn,setUser} = useContext(AuthContext)
+
+    const dispatch = useDispatch()
 
     const router = useRouter()
 
@@ -46,7 +50,11 @@ const SIgnInForm = () => {
         if (!res.ok) return toast.error("Something went wrong... please try again")
 
         const currentUser = await checkUserLoggedIn()
-        if (currentUser) setUser(currentUser)
+        if (currentUser) {
+            setUser(() => currentUser?.full_name);
+    
+            dispatch(registerUser(currentUser?.full_name));
+          }
 
         router.push("/")
       }
