@@ -6,7 +6,7 @@ import Link from 'next/link'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 
-const CardComp = ({ fundraiser,showLoc=true}) => {
+const CardComp = ({ fundraiser,showLoc=true,showTotal=true}) => {
 
     const {
         title,
@@ -21,15 +21,15 @@ const CardComp = ({ fundraiser,showLoc=true}) => {
     return (
         <Link href={`/f/${id}`} >
         
-            <div className="card m-2 shadow-md lg:shadow-lg rounded-b-md overflow-hidden">
+            <div className="card m-2 shadow-xl lg:shadow-lg rounded-b-md overflow-hidden">
                     <div className="w-full relative h-28 md:h-40 rounded-t-md overflow-hidden ">
                         <Image src={HeaderImage} layout={"fill"} />
                     </div>
-                    <div className="p-2 bg-white ">
-                        {showLoc && <h3 className="text-primary_green text-xs font-bold uppercase">
+                    <div className="p-2 bg-white text-gray-900">
+                        {showLoc && <h3 className="text-primary_green text-xs font-semibold uppercase">
                                 {country}
                             </h3>}
-                        <h2 className="md:text-lg font-bold capitalize">
+                        <h2 className="md:text-lg font-semibold  capitalize">
                             {title}
                         </h2>
                         <h4 className="hidden md:block">
@@ -45,8 +45,8 @@ const CardComp = ({ fundraiser,showLoc=true}) => {
                                 </div>
                             </div>
                         </div>
-                        <h2 className="text-sm md:text-base lg:text-lg md:font-bold ">
-                            ${amountRaised} raised <span className="hidden font-normal md:inline-block">of ${goal_amount}</span> 
+                        <h2 className="text-sm md:text-base lg:text-lg md:font-semibold ">
+                            ${amountRaised} raised { showTotal && <span className="hidden font-normal md:inline-block">of ${goal_amount}</span>} 
 
                         </h2>
                     </div>
