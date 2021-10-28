@@ -2,8 +2,13 @@ import React from 'react'
 import Image from "next/image"
 import HeaderDesktop from '../assets/gofundme-homepage-desktop.png'
 import HeaderMobile from "../assets/gofundme_homepage-mobile.png"
+import { useRouter } from 'next/router'
 
 const Header = () => {
+    const router = useRouter()
+    const onClick =()=>{
+        router.push("/create-fundraiser")
+    }
     return (
         <div className="w-full header relative">
 
@@ -25,7 +30,7 @@ const Header = () => {
                     Get Started Today.
                 </h3>
 
-                <button className="py-3 shadow-md bg-primary_green text-gray-50 text-lg w-full rounded-md font-bold lg:w-4/12 outline-none">
+                <button onClick={onClick} className="py-3 shadow-md bg-primary_green text-gray-50 text-lg w-full rounded-md font-bold lg:w-4/12 outline-none">
                     Start a GoFundMe
                 </button>
 
