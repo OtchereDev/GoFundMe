@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 const ToggleMenu = ({toggler, setToggler}) => {
 
@@ -14,6 +16,21 @@ const ToggleMenu = ({toggler, setToggler}) => {
     },[toggler])
 
     const menu=useRef(null)
+    const user = useSelector(state => state.user?.email)
+
+    const router = useRouter()
+
+    const onClick =()=>{
+        router.push("/create-fundraiser")
+    }
+
+    const handlePushToProfile=()=>{
+        router.push("/profile")
+    }
+
+    const pushToLogin=()=>{
+        router.push("/sign-in")
+    }
 
     return (
         <div ref={menu} className="w-full fixed z-20 top-0 left-0 h-full lg:hidden px-10 pt-10  bg-white">
@@ -22,13 +39,20 @@ const ToggleMenu = ({toggler, setToggler}) => {
                     <FontAwesomeIcon onClick={()=>setToggler(false)} icon={faTimes}  className="cursor-pointer" />
                 </div>
             <div>
-                <span className="mr-2 text-lg hover:text-gray-500 cursor-pointer">
-                    Sign in
-                </span>
+                {
+                    user
+                    ?
+                    <span onClick={handlePushToProfile} className="mr-2 text-lg hover:text-gray-500 cursor-pointer">
+                        Profile
+                    </span>
+                    :
+                    <span onClick={pushToLogin} className="mr-2 text-lg hover:text-gray-500 cursor-pointer">
+                        Sign in
+                    </span>}
             </div>
             <hr className="my-2" />
             <div>
-                <button className="px-2 outline-none py-3 w-full font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
+                <button onClick={onClick} className="px-2 outline-none py-3 w-full font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
                     Start a GoFundMe
                 </button>
             </div>

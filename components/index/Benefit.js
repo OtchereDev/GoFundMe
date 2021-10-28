@@ -1,8 +1,14 @@
 import { faGlobe, faCheckCircle,faHandHoldingUsd, faMobileAlt, faChartLine, faPhoneAlt  } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import BenefitCard from './BenefitCard'
+import { useRouter } from 'next/router'
 
 const Benefit = () => {
+    const router = useRouter()
+    const onClick =()=>{
+        router.push("/create-fundraiser")
+    }
+    
     return (
         <div className="bg-section_bg lg:py-20 py-10 px-8 mt-8">
             <h2 className="text-2xl font-semibold lg:text-4xl md:text-center">
@@ -27,7 +33,7 @@ const Benefit = () => {
             </div>
             
             <div className="flex justify-center mt-5">
-                <button className=" bg-primary_green rounded-md  py-3 w-full md:w-6/12 lg:w-2/12 text-white outline-none shadow-lg font-semibold">
+                <button onClick={onClick} className=" bg-primary_green rounded-md  py-3 w-full md:w-6/12 lg:w-2/12 text-white outline-none shadow-lg font-semibold">
                     Start a GoFundMe
                 </button>
             </div>
