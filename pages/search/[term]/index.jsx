@@ -35,8 +35,6 @@ export const getServerSideProps=async({req,params})=>{
 
   const data = await request.json()
 
-  console.log("dd",data)
-
   return {
     props:{
       fundraisers:data
