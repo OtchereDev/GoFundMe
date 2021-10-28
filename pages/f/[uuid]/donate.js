@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../context/AuthContext";
 import { APIURL } from "../../../config/config";
+import {useSelector,} from "react-redux"
 
 const Donate = ({data}) => {
   const [donationData, setDonationData] = useState();
@@ -22,10 +23,10 @@ const Donate = ({data}) => {
   const router = useRouter();
   const { uuid } = router.query;
 
-  const { user } = useContext(AuthContext);
+  const user  = useSelector(state => state.user?.email);
 
   useEffect(() => {
-    if (user) setDonorName(user.full_name);
+    if (user) setDonorName(user);
   }, [user]);
 
   const handleShowPayment = () => {
@@ -45,10 +46,10 @@ const Donate = ({data}) => {
   };
 
   useEffect(() => {
-    if (donation.length || (!tip.length || tip == "0")) {
-      setTip(parseFloat(parseInt(donation) * 0.15).toFixed(2));
+    if (donation.length<=0) undefined
+    else if (donation.length || (!tip.length || tip == "0")) {
+      setTip(parseFloat(parseInt(donation.length ? donation : 0) * 0.15).toFixed(2));
     }
-    console.log("here")
   }, [donation]);
 
   return (
@@ -184,7 +185,7 @@ const Donate = ({data}) => {
                   <h5>Total Due today</h5>
                   <h5>
                     $
-                    {donation.length ? parseInt(donation) + parseFloat(tip) : 0}.00
+                    {donation.length ? parseInt(donation) + parseFloat(tip) : "0.00"}
                   </h5>
                 </div>
               </div>
