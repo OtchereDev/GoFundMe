@@ -21,10 +21,14 @@ const SignIn = () => {
 };
 
 export const getServerSideProps = ({ req, res }) => {
-  const { refresh_token } = cookie.parse(req.headers.cookie);
 
-  if (refresh_token)
-    return { redirect: { permanent: false, destination: "/" } };
+  if (req.headers.cookie){
+
+    const { refresh_token } = cookie.parse(req.headers.cookie);
+  
+    if (refresh_token)
+      return { redirect: { permanent: false, destination: "/" } };
+  }
 
   return { props: {} };
 };
