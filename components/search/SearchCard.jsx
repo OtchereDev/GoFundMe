@@ -25,13 +25,13 @@ const SearchCard = ({ fundraiser,showLoc=true}) => {
                     </div>
                     <div className="p-2 bg-white ">
                  
-                        <h2 className="md:text-lg font-bold capitalize">
+                        <h2 className="md:text-lg font-semibold capitalize">
                             {title}
                         </h2>
                       
                         
                        
-                        <h2 className="text-sm md:text-base lg:text-lg md:font-bold ">
+                        <h2 className="text-sm md:text-base ">
                           by {organiser.fullName}
                         </h2>
                     </div>
