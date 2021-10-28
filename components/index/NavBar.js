@@ -5,15 +5,27 @@ import { faSearch,faBars } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const NavBar = ({setShowSearch,setToggler}) => {
 
-    const {user,logout} = useContext(AuthContext)
+    const {logout} = useContext(AuthContext)
+    const user = useSelector(state => state.user?.email)
 
-    
+    const router = useRouter()
+
+    const handlePushToProfile=()=>{
+        router.push("/profile")
+    }
+
+    const onClick =()=>{
+        router.push("/create-fundraiser")
+    }
+
 
     return (
-        <nav className="flex items-center justify-center w-full py-5 px-4 lg:px-6 absolute top-0 left-0 bg-white shadow-sm z-10">
+        <nav className="flex items-center justify-center w-full py-5 px-4 lg:px-6 absolute top-0 left-0 bg-white shadow-md z-10">
             <div className="w-3/12">
                 <div className="flex items-center justify-center">
                     <FontAwesomeIcon onClick={()=>setShowSearch(true)} icon={faSearch} className="text-lg lg:text-xl text-gray-600 cursor-pointer"  />
@@ -43,8 +55,8 @@ const NavBar = ({setShowSearch,setToggler}) => {
                         <>  
                             <div>
                                 
-                                <span className="mr-4 text-sm hover:text-gray-500 ">
-                                    Welcome {user.full_name}
+                                <span onClick={handlePushToProfile} className="mr-4 text-sm hover:text-gray-500 cursor-pointer">
+                                    Welcome {user}
                                 </span> 
                             </div>
 
@@ -63,7 +75,7 @@ const NavBar = ({setShowSearch,setToggler}) => {
                                 </span>
                             </Link>
                             <div>
-                                <button className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
+                                <button onClick={onClick} className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
                                     Start a GoFundMe
                                 </button>
                             </div>

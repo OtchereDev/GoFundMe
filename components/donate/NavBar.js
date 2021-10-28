@@ -1,11 +1,18 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import LogoSvg from "../LogoSvg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+
+import {AuthContext} from '../../context/AuthContext'
 
 const NavBar = () => {
+
+    const user = useSelector(state => state.user?.email)
+
+    const {logout} = useContext(AuthContext)
 
     const router=useRouter()
 
@@ -13,6 +20,10 @@ const NavBar = () => {
 
     const moveToFundraiser=()=>{
         router.push(`/f/${uuid}`)
+    }
+
+    const handlePushToProfile=()=>{
+        router.push("/profile")
     }
 
     return (
@@ -28,30 +39,47 @@ const NavBar = () => {
                 <LogoSvg  width={" w-8/12 lg:w-3/12"} />
                 
             </div>
-            <div className="w-3/12 flex justify-center items-center">
-
-                
-                <div className=" lg:flex items-center justify-center">
+            <div className="hidden lg:flex items-center justify-center">
                     
-                        <div>
-                            <Link href={"/sign-in"}>
-                                <p className="mr-2 text-sm underline hover:text-gray-500 cursor-pointer">
-
-                                    <span className="hidden lg:inline-block mr-2">
-                                        Already have an account
-                                    </span>
-                                
-                                    Sign in
-                                  
-                                </p>
-                            </Link>
-                        </div>
                         
+                    {
+                        user ?
+                        <>  
+                            <div>
+                                
+                                <span onClick={handlePushToProfile} className="mr-4 text-sm hover:text-gray-500 cursor-pointer">
+                                    Welcome {user}
+                                </span> 
+                            </div>
+
+                            <div>
+                                <button onClick={logout} className="px-2 outline-none py-1 font-semibold rounded-md bg-red-600 text-gray-50 shadow-md">
+                                    Logout
+                                </button>
+                            </div>
+                        </> 
+                        :
+                        <>
+                            <Link href={"/sign-in"}>
+                        
+                                <span className="mr-2 text-sm hover:text-gray-500 cursor-pointer">
+                                    Sign in
+                                </span>
+                            </Link>
+                            <div>
+                                <button className="px-2 outline-none py-1 font-semibold rounded-md bg-primary_green text-gray-50 shadow-md">
+                                    Start a GoFundMe
+                                </button>
+                            </div>
+                        </>
+                    }
+                       
                    
                 </div>
 
-            </div>
-        </nav>
+            
+            </nav>
+           
     )
 }
 
