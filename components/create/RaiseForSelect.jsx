@@ -1,21 +1,18 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Select from "react-select"
 
-const RaiseForSelect = () => {
-  const [value, setValue] = useState('')
-  // const options = useMemo(() => countryList().getData(), [])
+const RaiseForSelect = ({setRaiseFor,raiseFor}) => {
+
   const options = [
     {value:"Myself", label:"Myself"},
     {value:"Someone", label:"Someone else"},
-    
-
   ]
 
-  const changeHandler = value => {
-    setValue(value)
+  const changeHandler = e => {
+    setRaiseFor(e)
   }
 
-  return <Select className={"my-2"} placeholder={"Who are you raising the funds for ?"} options={options} value={value} onChange={changeHandler} />
+  return <Select className={"my-2"} placeholder={"Who are you raising the funds for ?"} options={options} value={raiseFor} onChange={changeHandler} />
 }
 
 export default RaiseForSelect

@@ -1,9 +1,7 @@
-import React, { useState, useMemo } from 'react'
+import React from 'react'
 import Select from 'react-select'
 
-function CategorySelect() {
-  const [value, setValue] = useState('')
-  // const options = useMemo(() => countryList().getData(), [])
+function CategorySelect({category, setCategory}) {
   const options = [
     {value:"Health", label:"Health"},
     {value:"Health", label:"Health"},
@@ -13,11 +11,11 @@ function CategorySelect() {
 
   ]
 
-  const changeHandler = value => {
-    setValue(value)
+  const changeHandler = e => {
+    setCategory(e)
   }
 
-  return <Select className={"my-2"} placeholder={"Category"} options={options} value={value} onChange={changeHandler} />
+  return <Select className={"my-2"} placeholder={"Category"} options={options} value={category} onChange={changeHandler} />
 }
 
 export default CategorySelect
