@@ -2,7 +2,7 @@ import React,{useState,useRef} from 'react'
 
 import { useEffect } from 'react';
 
-const Form3 = () => {
+const Form3 = ({formData,setFormData, handleSubmit}) => {
 
   const [editorData,setEditorData] = useState("")
   
@@ -31,6 +31,35 @@ const Form3 = () => {
     setEditorLoaded(true)
   }, [])
 
+  const handleInit=()=>{
+    setEditorData(formData.description)
+  }
+
+  useEffect(()=>{
+    formData && handleInit()
+  },[])
+
+  
+  const handleComplete=()=>{
+
+    const data = {
+      description:editorData
+    }
+
+    setFormData(data)
+    setFormData(formData+" ")
+    handleSubmit()
+  }
+
+  const handleEditorInput=( event, editor ) => {
+    const data = editor.getData();
+    setEditorData(data)
+    const formData = {
+      description:editorData
+    }
+
+    setFormData(formData)
+  } 
 
 
   return (
@@ -48,10 +77,7 @@ const Form3 = () => {
             editor={ClassicEditor}
            
             data={editorData}
-            onChange={ ( event, editor ) => {
-                const data = editor.getData();
-                setEditorData(data)
-            } }
+            onChange={ handleEditorInput}
             config={{toolbar}}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
@@ -74,7 +100,7 @@ const Form3 = () => {
         editorData.length > 10
         &&
         <div className='my-2'>
-          <button className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
+          <button onClick={handleComplete} className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
             Submit
           </button>
         </div>
