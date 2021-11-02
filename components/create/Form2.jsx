@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import ImgCrop from 'antd-img-crop';
 import { Upload } from 'antd';
 
 
-const Form2 = () => {
+const Form2 = ({formData,setFormData, increaseStep}) => {
   const [loading,setLoading] = useState(false)
   const[imageUrl,setImageUrl] =useState("")
   const [image,setImage] = useState()
@@ -36,6 +36,24 @@ const Form2 = () => {
     setImageUrl()
     setImage()
   }
+
+  const handleNext=()=>{
+    const data = {
+      image,
+      imageUrl
+    }
+    setFormData(data)
+    increaseStep()
+  }
+
+  const handleInit=()=>{
+    setImageUrl(formData.imageUrl)
+    setImage(formData.image)
+  }
+
+  useEffect(()=>{
+    formData && handleInit()
+  })
 
   return (
     <div>
@@ -74,7 +92,7 @@ const Form2 = () => {
             </button>
           </div>
           <div className='my-2'>
-            <button className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
+            <button onClick={handleNext} className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
               Next
             </button>
           </div>
