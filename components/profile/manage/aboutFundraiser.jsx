@@ -38,7 +38,7 @@ const AboutFundraiser = () => {
           <p className="text-lg text-gray-800">$0 raised</p>
         </div>
       </div>
-      <div className="flex w-6/12 md:w-3/12  items-center  justify-between">
+      <div className="flex w-6/12 md:w-3/12 mt-3 md:mt-0  items-center  justify-between">
         <div className=" w-3/12 flex items-center justify-center group flex-col">
           <div className="w-10 h-10 rounded-full border-2 cursor-pointer group-hover:bg-primary_green border-primary_green flex justify-center items-center">
             <FontAwesomeIcon
@@ -60,7 +60,7 @@ const AboutFundraiser = () => {
           <p className=" text-lg font-medium underline cursor-pointer">Edit</p>
         </div>
 
-        <div className="flex w-3/12  flex-col items-center mt-3 md:mt-0 group">
+        <div className="flex w-3/12  flex-col items-center  group">
           <div className="w-10 h-10 rounded-full border-2 cursor-pointer group-hover:bg-primary_green  border-primary_green flex justify-center items-center">
             <FontAwesomeIcon
               icon={faFunnelDollar}
