@@ -26,14 +26,14 @@ export default async function (req,res){
         res.setHeader("Set-Cookie",[
             cookie.serialize("refresh_token",data.refresh_token,{
                 httpOnly:true,
-                maxAge: 60 * 60 * 24,
+                maxAge: 60 * 60 * 24 * 1000,
                 secure:process.env.NODE_ENV !== "development",
                 sameSite:'strict',
                 path:"/"
             }),
             cookie.serialize("access_token",data.access_token,{
                 httpOnly:true,
-                maxAge: 60 ,
+                maxAge: 60 * 1000 ,
                 secure:process.env.NODE_ENV !== "development",
                 sameSite:'strict',
                 path:"/"
