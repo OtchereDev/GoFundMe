@@ -5,12 +5,28 @@ import ToggleMenu from '../../../../components/index/ToggleMenu'
 import NavBar from '../../../../components/index/NavBar'
 import Mangefundraiser from '../../../../components/profile/manage/mangefundraiser'
 import cookie from 'cookie'
+import DonateItem from '../../../../components/detail/DonateItem'
 
 
 
 const Index = () => {
   const [showSearch,setShowSearch] = useState(false)
   const [toggler, setToggler] = useState(false)
+
+  const donations=[
+    {name:"Oliver",
+    amount:10,
+    createdAt:new Date()},
+    {name:"Oliver",
+    amount:10,
+    createdAt:new Date()},
+    {name:"Oliver",
+    amount:10,
+    createdAt:new Date()},
+    {name:"Oliver",
+    amount:10,
+    createdAt:new Date()}
+  ]
 
   
 
@@ -31,7 +47,7 @@ const Index = () => {
           setToggler={setToggler} 
         />
 
-        <div className="w-full z-0 py-10 bg-gray-100">
+        <div className="w-full z-0 py-8 md:py-12 bg-gray-100">
 
         </div>
 
@@ -40,7 +56,14 @@ const Index = () => {
           <h4>
             Donations
           </h4>
+          {donations?.length > 0 && donations.map((donation, index) => (
+          <React.Fragment key={index}>
+            <DonateItem className="bg-gray-50 p-2 rounded-md md:w-7/12 lg:w-6/12" donate={donation} />
+          </React.Fragment>
+          ))
+        }
         </div>
+        
       </div>
       
     </>
