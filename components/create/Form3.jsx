@@ -20,7 +20,7 @@ const Form3 = ({formData,setFormData, handleSubmit}) => {
         'undo', 'redo'
     ],
     shouldNotGroupWhenFull: true
-}
+  }
 
   useEffect(() => {
     editorRef.current = {

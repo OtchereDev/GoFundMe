@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
 import Header from '../components/index/Header'
 import NavBar from '../components/index/NavBar'
 import SearchComp from '../components/index/SearchComp'

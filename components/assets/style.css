@@ -2,7 +2,7 @@
 .detail_header,
 .donate_header{
     min-height:60vh;
-
+    max-height: 450px;
 }
 
 .donate_header .img_cont{
@@ -12,6 +12,11 @@
 .header .img_cont,
 .detail_header .img_cont{
     height:45vh;
+}
+
+p::selection{
+  color: white;
+  background-color: #02a95c;
 }
 
 .btn_deep{
