@@ -40,6 +40,13 @@ const AuthContextProvider = ({ children }) => {
 
     if (!res.ok) return toast.error(data.message);
 
+    const currentUser = await checkUserLoggedIn()
+    if (currentUser) {
+        setUser(() => currentUser?.full_name);
+
+        dispatch(registerUser(currentUser?.full_name));
+      }
+
     toast.success("Login succedded");
 
     return router.push("/");
@@ -56,7 +63,13 @@ const AuthContextProvider = ({ children }) => {
 
     const data = await res.json();
 
-    if (!res.ok) return data.message.forEach((message) => toast.error(message));
+    if (!res.ok) {
+      
+      if (typeof data.message == "string"){
+        return toast.error(data.message)
+      }
+      return data.message?.forEach((message) => toast.error(message));
+    }
 
     toast.success("Sign-up succedded...Please Log In!!");
     return router.push("/sign-in");
