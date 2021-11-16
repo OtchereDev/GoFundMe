@@ -92,7 +92,7 @@ const Form2 = ({formData,setFormData, increaseStep}) => {
             </button>
           </div>
           <div className='my-2'>
-            <button onClick={handleNext} className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
+            <button onClick={handleNext} className='w-full text-lg font-semibold outline-none bg-primary_green py-3 text-gray-50 rounded-md '>
               Next
             </button>
           </div>

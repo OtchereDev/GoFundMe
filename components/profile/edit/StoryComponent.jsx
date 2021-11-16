@@ -73,7 +73,7 @@ const StoryComponent = ({formData}) => {
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               // console.log("Editor is ready to use!", editor);
-              editor.editing.view.change((writer) => {
+              editor?.editing.view.change((writer) => {
               writer.setStyle(
                   "height",
                   "200px",

@@ -14,7 +14,7 @@ const Header = ({step, setStep}) => {
           </p>
         </div>
 
-        <div className='w-full md:w-4/12 px border-t flex'>
+        <div className='w-full md:w-6/12 lg:w-4/12 px border-t flex'>
           <div onClick={()=>setStep(1)} className={`w-4/12 py-2 flex justify-center items-center cursor-pointer ${step ==1 && "border-b-4 border-black "}`}>
             <p>
               Overview

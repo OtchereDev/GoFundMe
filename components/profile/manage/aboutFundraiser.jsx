@@ -26,7 +26,7 @@ const AboutFundraiser = () => {
         </div>
 
         <div>
-          <div className="w-full md:w-4/12 my-2">
+          <div className="w-full md:w-8/12 lg:w-4/12 my-2 ">
             <div className="w-full h-1 relative rounded-3xl bg-gray-200 overflow-hidden">
               <div
                 style={{ width: `${0 * 100}%` }}

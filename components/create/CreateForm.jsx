@@ -24,7 +24,7 @@ const CreateForm = () => {
       !success ?
       <>
       
-      <div className='w-11/12 mx-auto md:w-5/12 rounded-md bg-gray-50 py-4 px-4 shadow-2xl my-5 md:my-8'>
+      <div className='w-11/12 mx-auto md:w-8/12 lg:w-5/12 rounded-md bg-gray-50 py-4 px-4 shadow-2xl my-5 md:my-8'>
         <p className='text-center text-gray-900 mb-3'>
           Step {step} of 3
         </p>

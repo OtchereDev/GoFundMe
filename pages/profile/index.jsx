@@ -25,7 +25,7 @@ const index = () => {
         <ToggleMenu toggler={toggler} setToggler={setToggler} />
         <NavBar  setShowSearch={setShowSearch} setToggler={setToggler} />
 
-        <div className="w-full mx-auto md:w-7/12 z-0 pt-24 px-4">
+        <div className="w-full mx-auto md:w-10/12 lg:w-7/12 z-0 pt-28 md:pt-32 px-4">
           <ProfileHeader/>
           <YourFundraiser/>
         </div>

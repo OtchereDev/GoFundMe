@@ -47,7 +47,7 @@ const Index = () => {
           setToggler={setToggler} 
         />
 
-        <div className="w-full z-0 py-8 md:py-12 bg-gray-100">
+        <div className="w-full z-0 py-8 md:py-12 lg:py-10 bg-gray-100">
 
         </div>
 
@@ -58,7 +58,7 @@ const Index = () => {
           </h4>
           {donations?.length > 0 && donations.map((donation, index) => (
           <React.Fragment key={index}>
-            <DonateItem className="bg-gray-50 p-2 rounded-md md:w-7/12 lg:w-6/12" donate={donation} />
+            <DonateItem className="bg-gray-50 p-2 rounded-md md:w-7/12 lg:w-5/12" donate={donation} />
           </React.Fragment>
           ))
         }

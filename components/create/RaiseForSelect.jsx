@@ -12,7 +12,7 @@ const RaiseForSelect = ({setRaiseFor,raiseFor}) => {
     setRaiseFor(e)
   }
 
-  return <Select className={"my-2"} placeholder={"Who are you raising the funds for ?"} options={options} value={raiseFor} onChange={changeHandler} />
+  return <Select className={"my-4 lg:my-2"} placeholder={"Who are you raising the funds for ?"} options={options} value={raiseFor} onChange={changeHandler} />
 }
 
 export default RaiseForSelect

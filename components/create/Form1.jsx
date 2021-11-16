@@ -83,7 +83,7 @@ const Form1 = ({increaseStep, formData, setFormData}) => {
         <h3 className='text-center text-gray-800 my-4 text-lg font-semibold'>
           Enter Your Goal Here
         </h3>
-        <div className="flex items-center border p-3 rounded-md my-3">
+        <div className="flex items-center border p-3 rounded-md my-5 lg:my-3">
           <h3 className="text-2xl">USD</h3>
 
           <div className="flex items-center">
@@ -102,7 +102,7 @@ const Form1 = ({increaseStep, formData, setFormData}) => {
       </div>
 
   
-      <div className="flex items-center border p-2 rounded-md my-2 w-full">
+      <div className="flex items-center border p-2 rounded-md my-4 lg:my-2 w-full">
 
         <div className="flex items-center w-full">
           <input
@@ -131,7 +131,7 @@ const Form1 = ({increaseStep, formData, setFormData}) => {
       <RaiseForSelect setRaiseFor={setRaiseFor} raiseFor={raiseFor} />
 
       {
-        raiseFor == "Someone"
+        raiseFor?.value == "Someone"
         &&
         <div>
           <input 
@@ -148,14 +148,14 @@ const Form1 = ({increaseStep, formData, setFormData}) => {
       <CategorySelect category={category} setCategory={setCategory}  />
 
       <div>
-        <p className='text-sm text-gray-400'>
+        <p className='text-sm text-gray-400 my-4'>
           The platform is free for organizers. Transaction fee is 2.9 plus $0.30 per donation. By continuing, you agree to the GoFundMe terms and acknowledge receipt of our privacy policy
         </p>
       </div>
 
       
         <div className='my-2'>
-          <button onClick={handleNext} className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
+          <button onClick={handleNext} className='w-full outline-none text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
             Next
           </button>
         </div>

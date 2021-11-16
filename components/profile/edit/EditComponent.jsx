@@ -8,7 +8,7 @@ const EditComponent = () => {
   return (
     <div>
       
-      <div className='py-5 px-3 md:px-10 lg:px-40 w-full bg-gray-50'>
+      <div className='py-5 md:py-9 px-3 md:px-10 lg:px-40 w-full bg-gray-50'>
         <button className='py-2 px-4 border rounded-md flex items-center'>
           <FontAwesomeIcon icon={faChevronLeft} className='mr-3' />
           <p>

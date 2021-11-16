@@ -82,7 +82,7 @@ const Form3 = ({formData,setFormData, handleSubmit}) => {
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               // console.log("Editor is ready to use!", editor);
-              editor.editing.view.change((writer) => {
+              editor?.editing.view.change((writer) => {
               writer.setStyle(
                   "height",
                   "200px",
@@ -100,7 +100,7 @@ const Form3 = ({formData,setFormData, handleSubmit}) => {
         editorData.length > 10
         &&
         <div className='my-2'>
-          <button onClick={handleComplete} className='w-full text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
+          <button onClick={handleComplete} className='w-full outline-none text-lg font-semibold bg-primary_green py-3 text-gray-50 rounded-md '>
             Submit
           </button>
         </div>
