@@ -11,12 +11,17 @@ import {toast}  from "react-toastify"
 import {useRouter} from "next/router"
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../store/slices/userSlice'
+import { Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 const SIgnInForm = () => {
 
     const [email,setEmail] = useState('')
     const [password,setPassword]=useState('')
+    const [btnLoading, setBtnLoading] = useState(false)
+    const antIcon = <LoadingOutlined style={{ fontSize: 24, color:"green" }} spin />
+
 
     const {login,checkUserLoggedIn,setUser} = useContext(AuthContext)
 
@@ -26,9 +31,13 @@ const SIgnInForm = () => {
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
-
-        if (email.length && password.length) return await login({email,password})
-
+        setBtnLoading(true)
+        if (email.length && password.length){
+            
+            await login({email,password})
+            return setBtnLoading(false)
+        } 
+        setBtnLoading(false)
         toast.error("Please fill in the input")
 
     }
@@ -68,7 +77,7 @@ const SIgnInForm = () => {
                 </h1>
             </div>
 
-            <div className="w-8/12 lg:w-4/12 mx-auto ">
+            <div className="w-10/12 md:w-8/12 lg:w-5/12 mx-auto ">
                 <div className="py-7">
                     <a href="/" className="focus:outline-none">
                     <GoogleLogin
@@ -77,13 +86,22 @@ const SIgnInForm = () => {
                         render={renderProps => (
                         
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="py-3 px-4 lg:px-7 shadow-lg w-full outline-none mx-auto rounded-md flex justify-center items-center text-gray-50 bg-red-400">
-                            <span>
-                              <FontAwesomeIcon icon={faGoogle} />  
-                            </span>
-                            <span className="ml-2 font-semibold lg:font-medium">
+                            {
+                                renderProps.disabled
+                                ?
+                                <Spin indicator={antIcon} />
+                                :
+                                <>
+                                
+                                    <span>
+                                    <FontAwesomeIcon icon={faGoogle} />  
+                                    </span>
+                                    <span className="ml-2 font-semibold lg:font-medium">
 
-                                Log In with Google
-                            </span>
+                                        Log In with Google
+                                    </span>
+                                </>
+                            }
                         </button>
 
                         )}
@@ -105,11 +123,18 @@ const SIgnInForm = () => {
 
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className="mb-10">
+                <form onSubmit={handleSubmit} className="mb-10 flex justify-center items-center flex-col w-full">
                     <AuthBaseInput type="email" value={email} setValue={setEmail} placeholder="Email address" />
                     <AuthBaseInput type="password" value={password} setValue={setPassword} placeholder="Password" />
-                    <button className="w-full py-3 border border-primary_green bg-white text-primary_green font-semibold rounded-md mt-5">
-                        Sign in to GoFundMe
+                    <button className="w-full py-3 outline-none border border-primary_green bg-white text-primary_green font-semibold rounded-md mt-5" disabled={btnLoading}>
+                    {
+                                btnLoading
+                                ?
+                                <Spin indicator={antIcon} />
+                                :
+                                "Sign in to GoFundMe"
+                            }
+                        
                     </button>
                 </form>
             </div>

@@ -4,20 +4,25 @@ import Link from 'next/link'
 import {useState}  from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
+import { Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons';
+
 
 const SignUpForm = () => {
 
     const [email,setEmail] = useState('')
     const [password,setPassword]=useState('')
     const [fullName,setFullname]=useState('')
+    const [btnLoading, setBtnLoading] = useState(false)
+    const antIcon = <LoadingOutlined style={{ fontSize: 24, color:"white" }} spin />
 
     const {signup} = useContext(AuthContext)
 
-    const handleSubmit=e=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault()
-
-        console.log(email,password,fullName)
+        setBtnLoading(true)
         signup({email,password,fullName})
+        setBtnLoading(false)
     }
     return (
     
@@ -28,14 +33,20 @@ const SignUpForm = () => {
                     </h1>
                 </div>
 
-                <div className="w-8/12 lg:w-4/12 mx-auto ">
+                <div className="w-10/12 md:w-8/12 lg:w-5/12 mx-auto ">
                                 
-                    <form onSubmit={handleSubmit} className="my-10">
+                    <form onSubmit={handleSubmit} className="my-10 flex justify-center items-center flex-col w-full">
                         <AuthBaseInput type="text" value={fullName} setValue={setFullname} placeholder="Full Name" />
                         <AuthBaseInput type="email" value={email} setValue={setEmail} placeholder="Email address" />
                         <AuthBaseInput type="password" value={password} setValue={setPassword} placeholder="Password" />
-                        <button className="w-full py-3 border bg-primary_green text-white  font-semibold rounded-md mt-5">
-                            Next
+                        <button className="w-full py-3 border outline-none bg-primary_green text-white  font-semibold rounded-md mt-5" disabled={btnLoading}>
+                            {
+                                btnLoading
+                                ?
+                                <Spin indicator={antIcon} />
+                                :
+                                "Next"
+                            }
                         </button>
                     </form>
                 </div>
