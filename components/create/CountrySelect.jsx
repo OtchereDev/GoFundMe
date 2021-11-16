@@ -10,7 +10,7 @@ function CountrySelector({location, setLocation}) {
     setLocation(e)
   }
 
-  return <Select className={"my-2"} placeholder={"Select Your Country"} options={options} value={location} onChange={changeHandler} />
+  return <Select className={"my-4 lg:my-2"} placeholder={"Select Your Country"} options={options} value={location} onChange={changeHandler} />
 }
 
 export default CountrySelector
