@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.17",
     "@ckeditor/ckeditor5-build-classic": "^31.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -21,6 +22,7 @@
     "axios": "^0.21.3",
     "cookie": "^0.4.1",
     "date-fns": "^2.23.0",
+    "graphql": "^16.0.1",
     "next": "latest",
     "nextjs-progressbar": "^0.0.11",
     "react": "^17.0.2",
