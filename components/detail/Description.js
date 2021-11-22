@@ -50,7 +50,7 @@ const Description = ({title,createdAt,organiser,category,description,donations,N
                 <span className="flex items-center">
                     |  <FontAwesomeIcon className="text-lg m-2 text-green-400" icon={faTag} />
                     <span className="cursor-pointer hover:bg-gray-100 p-1 ">
-                        {category}
+                        {category.name}
                     </span>
                 </span>
             </div>
